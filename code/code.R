@@ -9,7 +9,11 @@ dat %>% View()
 #5-8: Warmth: These get averaged together for a warmth score. 
 #cluster these: small <- dat %>% select(cismen_competence:crohns_warmth)
 
-small <- dat %>% select(cismen_competence:crohns_warmth)
+
+colnametochange <- colnames(dat[32:596])
+
+newdat <- dat %>% mutate(across(all_of(colnametochange), ~ as.numeric(substr(., 1, 1))))
+small <- newdat %>% select(cismen_competence:crohns_warmth)
 
 #apply(small, 2, mean, na.rm = TRUE)
 clean <- as.data.frame(matrix(apply(small, 2, mean, na.rm = TRUE) , ncol = 2, byrow = TRUE))
@@ -23,5 +27,5 @@ greg <- clean %>% mutate(var = str_remove(var,"_competence"))
 greg$clust <- kmeans(greg[,1:2], 4)$cluster
 greg %>%  ggplot(aes(x = warmth, y= comp, color = as.factor(clust))) + geom_point()
 
-#hello
+
 
