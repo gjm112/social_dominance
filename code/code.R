@@ -1,7 +1,8 @@
 library(foreign)
 library(tidyverse)
 
-dat <- as.data.frame(read.spss("/Users/gregorymatthews/Downloads/HierarchyNoDS 02.16.sav"))
+#dat <- as.data.frame(read.spss("/Users/gregorymatthews/Downloads/HierarchyNoDS 02.16.sav"))
+dat <- as.data.frame(read.spss("/Users/noral/OneDrive/Desktop/CDSC/social dominance new/HierarchyNoDS 02.16.sav"))
 dat %>% View()
 
 #1-4: Competence: These get averaged together to get a competence score
