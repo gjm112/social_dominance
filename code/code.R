@@ -23,5 +23,5 @@ greg <- clean %>% mutate(var = str_remove(var,"_competence"))
 greg$clust <- kmeans(greg[,1:2], 4)$cluster
 greg %>%  ggplot(aes(x = warmth, y= comp, color = as.factor(clust))) + geom_point()
 
-
+#hello
 
