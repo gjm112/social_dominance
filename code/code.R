@@ -2,8 +2,8 @@ library(foreign)
 library(tidyverse)
 
 #dat <- as.data.frame(read.spss("/Users/gregorymatthews/Downloads/HierarchyNoDS 02.16.sav"))
-#dat <- as.data.frame(read.spss("/Users/noral/OneDrive/Desktop/CDSC/social dominance new/HierarchyNoDS 02.16.sav"))
-dat <- as.data.frame(read.spss("C:/Users/gigip/OneDrive/Desktop/Loyola Chicago/CDSC/social_dominance/HierarchyNoDS 02.16.sav"))
+dat <- as.data.frame(read.spss("/Users/noral/OneDrive/Desktop/CDSC/social dominance new/HierarchyNoDS 02.16.sav"))
+#dat <- as.data.frame(read.spss("C:/Users/gigip/OneDrive/Desktop/Loyola Chicago/CDSC/social_dominance/HierarchyNoDS 02.16.sav"))
 dat %>% View()
 
 #1-4: Competence: These get averaged together to get a competence score
@@ -27,7 +27,7 @@ greg <- clean %>% mutate(var = str_remove(var,"_competence"))
 
 greg$clust <- kmeans(greg[,1:2], 4)$cluster
 greg %>%  ggplot(aes(x = warmth, y= comp, color = as.factor(clust))) + geom_point() +
-  xlim(1,5) + ylim(1,5)
+  xlim(1,5) + ylim(1,5) + stat_ellipse(type = "norm")
 
 
 
