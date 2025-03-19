@@ -58,15 +58,22 @@ ggplot(elbow_df, aes(x = k, y = tot_withinss)) +
 
 # pivot longer
 boxes <- cols1to8 %>% pivot_longer(cols = cismen_1:crohns_8, names_to = "group", values_to = "score") %>% drop_na()
+boxes1 <- boxes %>% group_by(group, score) %>% summarize(count = n()) %>% 
+  mutate(score = factor(score, levels = c(5, 4, 3, 2, 1)))
+
 # all group names
 groups <- greg %>% select(var) %>% list()
 
 # cismen boxplots
-boxes %>% filter(grepl('cismen', group)) %>% ggplot(aes(y = score)) + geom_boxplot() + facet_wrap(~ group, ncol =4)
+boxes1 %>% filter(grepl('cismen', group)) %>% 
+  ggplot(aes(x = group, y = count, fill = as.factor(score))) + 
+  geom_bar(position = "fill", stat = "identity") +
+  theme(axis.text.x = element_text(angle = 45, margin = margin(t = 15)))
 
 # transwomen boxplots
-boxes %>% filter(grepl('transwomen', group)) %>% ggplot(aes(y = score)) + geom_boxplot() + facet_wrap(~ group, ncol =4)
-
+boxes1 %>% filter(grepl('transwomen', group)) %>% 
+  ggplot(aes(x = group, y = count, fill = as.factor(score))) + 
+  geom_bar(position = "fill", stat = "identity")
 
 # i want to loop through all groups but not working rn
 for (g in length(groups)){
