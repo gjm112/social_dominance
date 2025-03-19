@@ -73,7 +73,8 @@ boxes1 %>% filter(grepl('cismen', group)) %>%
 # transwomen boxplots
 boxes1 %>% filter(grepl('transwomen', group)) %>% 
   ggplot(aes(x = group, y = count, fill = as.factor(score))) + 
-  geom_bar(position = "fill", stat = "identity")
+  geom_bar(position = "fill", stat = "identity") +
+  theme(axis.text.x = element_text(angle = 45, margin = margin(t = 15)))
 
 # i want to loop through all groups but not working rn
 for (g in length(groups)){
