@@ -1,7 +1,7 @@
 library(foreign)
 library(tidyverse)
 
-#dat <- as.data.frame(read.spss("/Users/gregorymatthews/Downloads/HierarchyNoDS 02.16.sav"))
+#dat <- as.data.frame(read.spss("/Users/gregorymatthews/Dropbox/social_dominance/HierarchyNoDS 02.16.sav"))
 dat <- as.data.frame(read.spss("/Users/noral/OneDrive/Desktop/CDSC/social dominance new/HierarchyNoDS 02.16.sav"))
 #dat <- as.data.frame(read.spss("C:/Users/gigip/OneDrive/Desktop/Loyola Chicago/CDSC/social_dominance/HierarchyNoDS 02.16.sav"))
 dat %>% View()
@@ -11,10 +11,12 @@ dat %>% View()
 #cluster these: small <- dat %>% select(cismen_competence:crohns_warmth)
 
 
-colnametochange <- colnames(dat[32:596])
+#colnametochange <- colnames(dat[32:596])
 
-newdat <- dat %>% mutate(across(all_of(colnametochange), ~ as.numeric(substr(., 1, 1))))
-small <- newdat %>% select(cismen_competence:crohns_warmth)
+small <- dat %>% select(cismen_competence:crohns_warmth)
+colnametochange  <-  colnames(small)
+newdat <- dat %>% mutate(across(all_of(colnametochange), ~ as.numeric(substr(., 1, 1)))) %>% select(cismen_competence:crohns_warmth)
+
 
 #apply(small, 2, mean, na.rm = TRUE)
 clean <- as.data.frame(matrix(apply(small, 2, mean, na.rm = TRUE) , ncol = 2, byrow = TRUE))
