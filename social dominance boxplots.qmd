@@ -127,9 +127,13 @@ make_graph <- function(x = 'cismen'){
 
 plot_list <- list()
 
+# make graphs using functions
 for (i in unique(cleaned$var)){
   plot_list[[i]] <- make_graph(i)
 }
 
-plot_list
+# print graphs
+for (j in 1:length(plot_list)){
+  print(plot_list[[j]])
+}
 ```
