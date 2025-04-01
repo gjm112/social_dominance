@@ -2,8 +2,8 @@ library(foreign)
 library(tidyverse)
 
 #dat <- as.data.frame(read.spss("/Users/gregorymatthews/Dropbox/social_dominance/HierarchyNoDS 02.16.sav"))
-# dat <- as.data.frame(read.spss("/Users/noral/OneDrive/Desktop/CDSC/social dominance new/HierarchyNoDS 02.16.sav"))
-dat <- as.data.frame(read.spss("C:/Users/gigip/OneDrive/Desktop/Loyola Chicago/CDSC/social_dominance/HierarchyNoDS 02.16.sav"))
+dat <- as.data.frame(read.spss("/Users/noral/OneDrive/Desktop/CDSC/social dominance new/HierarchyNoDS 02.16.sav"))
+#dat <- as.data.frame(read.spss("C:/Users/gigip/OneDrive/Desktop/Loyola Chicago/CDSC/social_dominance/HierarchyNoDS 02.16.sav"))
 dat %>% select(cismen_1:cismen_4, cismen_competence) %>% View()
 
 #1-4: Competence: These get averaged together to get a competence score
